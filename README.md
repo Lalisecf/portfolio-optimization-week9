@@ -23,12 +23,12 @@ Historical financial data for three assets were collected using the **YFinance A
 The complete project consists of:
 
 - Data preprocessing and exploratory data analysis
-- Time series forecasting using ARIMA/SARIMA and LSTM
+- Time series forecasting using ARIMA and LSTM
 - Future market forecasting
 - Portfolio optimization using Modern Portfolio Theory (MPT)
 - Portfolio backtesting
 
-This repository currently contains the implementation of **Task 1**, which focuses on data extraction, preprocessing, exploratory data analysis, stationarity testing, and risk analysis.
+This repository currently contains the implementation of **Task 1** and **Task 2**, covering data preprocessing, exploratory data analysis, and forecasting model development.
 
 ---
 
@@ -36,7 +36,7 @@ This repository currently contains the implementation of **Task 1**, which focus
 
 Guide Me in Finance (GMF) Investments aims to improve portfolio management through predictive analytics and quantitative financial analysis.
 
-The goal of this project is to analyze historical market behavior, identify statistical characteristics of different asset classes, and prepare clean financial data for forecasting and portfolio optimization.
+The goal of this project is to analyze historical market behavior, identify statistical characteristics of different asset classes, build forecasting models, and prepare data-driven recommendations for portfolio optimization.
 
 ---
 
@@ -47,22 +47,32 @@ portfolio-optimization/
 │
 ├── .github/
 │   └── workflows/
+│       └── unittests.yml
 │
 ├── .vscode/
+│   └── settings.json
 │
 ├── data/
 │   ├── raw/
+│   │   ├── TSLA.csv
+│   │   ├── BND.csv
+│   │   └── SPY.csv
 │   └── processed/
 │
 ├── notebooks/
+│   ├── __init__.py
+│   ├── README.md
 │   ├── task1_eda.ipynb
-│   └── README.md
+│   └── task2_forecasting.ipynb
 │
 ├── scripts/
+│   └── __init__.py
 │
 ├── src/
+│   └── __init__.py
 │
 ├── tests/
+│   └── __init__.py
 │
 ├── requirements.txt
 ├── README.md
@@ -75,7 +85,7 @@ portfolio-optimization/
 
 Historical market data were downloaded directly from **Yahoo Finance** using the **YFinance** Python package.
 
-### Assets
+## Assets
 
 | Asset | Ticker | Risk Profile |
 |--------|--------|--------------|
@@ -83,7 +93,7 @@ Historical market data were downloaded directly from **Yahoo Finance** using the
 | Vanguard Total Bond Market ETF | BND | Low Risk |
 | SPDR S&P 500 ETF | SPY | Moderate Risk |
 
-### Time Period
+## Time Period
 
 **January 1, 2015 – June 30, 2026**
 
@@ -98,6 +108,8 @@ Historical market data were downloaded directly from **Yahoo Finance** using the
 - Seaborn
 - YFinance
 - Statsmodels
+- pmdarima
+- TensorFlow / Keras
 - Scikit-learn
 - Jupyter Notebook
 
@@ -193,7 +205,7 @@ These findings indicate that daily returns are more suitable for time series for
 
 ## Risk Metrics
 
-Two financial risk metrics were calculated:
+Two financial risk metrics were calculated.
 
 ### Value at Risk (VaR)
 
@@ -226,6 +238,94 @@ The following preprocessing steps were performed:
 
 ---
 
+# Task 2: Time Series Forecasting
+
+## Objectives
+
+The second task focuses on developing, training, and evaluating forecasting models to predict Tesla's future stock prices.
+
+Two forecasting approaches were implemented:
+
+- ARIMA (AutoRegressive Integrated Moving Average)
+- Long Short-Term Memory (LSTM) Neural Network
+
+The models were compared using standard forecasting performance metrics.
+
+---
+
+## Data Preparation
+
+Before model training:
+
+- Tesla closing prices were selected as the target variable.
+- The dataset was divided chronologically.
+- Training data covered **2015–2024**.
+- Testing data covered **2025–2026**.
+- Random shuffling was avoided to preserve the temporal order of observations.
+
+---
+
+## ARIMA Model
+
+The statistical forecasting model was developed using:
+
+- Auto ARIMA for automatic parameter selection
+- ACF (Autocorrelation Function) plots
+- PACF (Partial Autocorrelation Function) plots
+- Optimal (p, d, q) parameter estimation
+- Model fitting on training data
+- Forecast generation on the testing period
+
+The model captures linear relationships in historical stock prices and provides an interpretable baseline forecasting model.
+
+---
+
+## LSTM Model
+
+A deep learning forecasting model was implemented using TensorFlow/Keras.
+
+The workflow included:
+
+- Min-Max scaling
+- 60-day input sequences
+- Two stacked LSTM layers
+- Dropout regularization
+- Dense output layer
+- Model training using the Adam optimizer
+- Prediction on unseen testing data
+
+LSTM is capable of learning complex nonlinear temporal relationships within stock price movements.
+
+---
+
+## Model Evaluation
+
+Both models were evaluated using:
+
+- Mean Absolute Error (MAE)
+- Root Mean Squared Error (RMSE)
+- Mean Absolute Percentage Error (MAPE)
+
+A comparison table summarizes the forecasting performance of the two models and supports selecting the best-performing model for future forecasting.
+
+---
+
+## Forecasting Workflow
+
+The forecasting pipeline consists of:
+
+1. Load Tesla historical data
+2. Chronological train-test split
+3. Build ARIMA model
+4. Generate ARIMA forecasts
+5. Prepare LSTM sequences
+6. Train the LSTM network
+7. Generate LSTM predictions
+8. Compare forecasting performance
+9. Select the best-performing model
+
+---
+
 # Requirements
 
 Install the required packages using:
@@ -254,6 +354,30 @@ Run all cells sequentially.
 
 ---
 
+# Running the Forecasting Notebook
+
+Launch Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open:
+
+```
+notebooks/task2_forecasting.ipynb
+```
+
+Run all notebook cells sequentially to:
+
+- Prepare training and testing datasets
+- Build the ARIMA model
+- Train the LSTM model
+- Generate forecasts
+- Compare forecasting performance using MAE, RMSE, and MAPE
+
+---
+
 # Repository Progress
 
 ## ✅ Completed
@@ -261,16 +385,21 @@ Run all cells sequentially.
 - Project structure
 - Historical data extraction
 - Data preprocessing
-- Exploratory Data Analysis
+- Exploratory Data Analysis (EDA)
+- Data visualization
 - Stationarity testing
-- Risk metrics
+- Risk metrics (VaR and Sharpe Ratio)
+- Chronological train-test split
+- ARIMA forecasting model
+- LSTM forecasting model
+- Model evaluation
+- Forecast comparison
 - Documentation
 
 ## 🚧 Upcoming Tasks
 
-- Task 2: Time Series Forecasting (ARIMA/SARIMA & LSTM)
 - Task 3: Future Market Forecasting
-- Task 4: Portfolio Optimization using Modern Portfolio Theory
+- Task 4: Portfolio Optimization using Modern Portfolio Theory (MPT)
 - Task 5: Portfolio Backtesting
 
 ---
@@ -283,6 +412,9 @@ Run all cells sequentially.
 - Matplotlib Documentation
 - Seaborn Documentation
 - Statsmodels Documentation
+- pmdarima Documentation
+- TensorFlow Documentation
+- Scikit-learn Documentation
 
 ---
 
