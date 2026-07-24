@@ -10,69 +10,74 @@
 
 # Project Overview
 
-This project is part of the **10 Academy Artificial Intelligence Mastery Program – Week 9 Challenge**.
+This project was completed as part of the **10 Academy Artificial Intelligence Mastery Program – Week 9 Challenge**.
 
-The objective is to analyze historical financial market data and develop a data-driven portfolio optimization strategy for **Guide Me in Finance (GMF) Investments**.
+The objective is to develop a complete data-driven investment decision support system for **Guide Me in Finance (GMF) Investments** by integrating financial time series forecasting, portfolio optimization, and backtesting.
 
-Historical financial data for three assets were collected using the **YFinance API**:
+Historical market data were collected using the **Yahoo Finance (YFinance) API** for three representative financial assets:
 
-- **Tesla (TSLA)** – High-growth, high-risk stock
+- **Tesla (TSLA)** – High-growth, high-risk technology stock
 - **Vanguard Total Bond Market ETF (BND)** – Low-risk bond ETF
-- **SPDR S&P 500 ETF (SPY)** – Diversified equity ETF
+- **SPDR S&P 500 ETF (SPY)** – Diversified U.S. equity ETF
 
-The complete project consists of:
+The project follows an end-to-end quantitative investment workflow consisting of:
 
-- Data preprocessing and exploratory data analysis
+- Historical data collection and preprocessing
+- Exploratory Data Analysis (EDA)
+- Financial risk analysis
 - Time series forecasting using ARIMA and LSTM
-- Future market forecasting
+- Twelve-month market forecasting
 - Portfolio optimization using Modern Portfolio Theory (MPT)
-- Portfolio backtesting
-
-This repository currently contains the implementation of **Task 1** and **Task 2**, covering data preprocessing, exploratory data analysis, and forecasting model development.
+- Efficient Frontier analysis
+- Portfolio backtesting against a benchmark
+- Investment recommendation based on forecasted market behavior
 
 ---
-
 # Business Objective
 
-Guide Me in Finance (GMF) Investments aims to improve portfolio management through predictive analytics and quantitative financial analysis.
+Guide Me in Finance (GMF) Investments aims to enhance portfolio management by combining machine learning forecasting techniques with quantitative portfolio optimization.
 
-The goal of this project is to analyze historical market behavior, identify statistical characteristics of different asset classes, build forecasting models, and prepare data-driven recommendations for portfolio optimization.
+The primary objectives are to:
+
+- Analyze historical market behavior
+- Forecast future Tesla stock prices
+- Compare statistical and deep learning forecasting models
+- Build an optimal investment portfolio
+- Evaluate portfolio performance through historical backtesting
+- Generate data-driven investment recommendations
 
 ---
 
 # Project Structure
 
-```
+```text
 portfolio-optimization/
 │
 ├── .github/
 │   └── workflows/
 │       └── unittests.yml
 │
-├── .vscode/
-│   └── settings.json
-│
 ├── data/
 │   ├── raw/
 │   │   ├── TSLA.csv
 │   │   ├── BND.csv
 │   │   └── SPY.csv
+│   │
 │   └── processed/
+│       ├── task3_forecast_results.csv
+│       ├── optimal_portfolio_weights.csv
+│       └── backtest_results.csv
 │
 ├── notebooks/
-│   ├── __init__.py
-│   ├── README.md
 │   ├── task1_eda.ipynb
-│   └── task2_forecasting.ipynb
-│
-├── scripts/
-│   └── __init__.py
+│   ├── task2_forecasting.ipynb
+│   ├── task3_future_forecasting.ipynb
+│   ├── task4_portfolio_optimization.ipynb
+│   └── task5_backtesting.ipynb
 │
 ├── src/
-│   └── __init__.py
-│
+├── scripts/
 ├── tests/
-│   └── __init__.py
 │
 ├── requirements.txt
 ├── README.md
@@ -326,9 +331,169 @@ The forecasting pipeline consists of:
 
 ---
 
+# Task 3 — Future Market Forecasting
+
+## Objectives
+
+Task 3 extends the selected forecasting model to predict Tesla's future stock prices over the next twelve months.
+
+The objective is to generate actionable forecasts that support investment decision-making.
+
+---
+
+## Completed Analyses
+
+- Retrained the best-performing forecasting model using the full historical dataset
+- Generated a 12-month Tesla stock price forecast
+- Produced test-period predictions for model validation
+- Visualized historical prices, test predictions, and future forecasts
+- Estimated 95% confidence intervals
+- Evaluated confidence interval growth over time
+- Calculated forecast summary statistics
+- Generated monthly forecast values
+- Analyzed expected monthly returns
+- Compared forecast prices with the last observed market price
+- Identified market opportunities and investment risks
+- Discussed forecast reliability and uncertainty
+
+---
+
+## Key Findings
+
+- Tesla is expected to maintain a long-term upward trend.
+- Forecast uncertainty increases gradually over longer horizons.
+- Confidence intervals widen over time, reflecting increased forecasting uncertainty.
+- The forecast suggests continued long-term growth while highlighting the importance of managing forecast risk.
+
+---
+
+# Task 4 — Portfolio Optimization
+
+## Objectives
+
+Task 4 combines forecasted returns with historical asset behavior to construct an optimal investment portfolio using Modern Portfolio Theory (MPT).
+
+---
+
+## Completed Analyses
+
+- Estimated expected annual returns
+- Incorporated forecasted Tesla return into optimization
+- Computed covariance matrix
+- Generated covariance and correlation heatmaps
+- Constructed Efficient Frontier
+- Simulated thousands of random portfolios
+- Identified Maximum Sharpe Ratio portfolio
+- Identified Minimum Volatility portfolio
+- Visualized portfolio allocation
+- Evaluated portfolio return contribution
+- Evaluated portfolio risk contribution
+- Compared optimal portfolios
+- Generated investment recommendation
+
+---
+
+## Key Findings
+
+- The Maximum Sharpe portfolio achieved the best balance between expected return and portfolio risk.
+- Diversification significantly reduced portfolio risk.
+- Forecasted Tesla returns improved expected portfolio performance.
+- Efficient Frontier analysis identified portfolios offering optimal risk-return trade-offs.
+
+---
+
+# Task 5 — Portfolio Backtesting
+
+## Objectives
+
+Task 5 evaluates how the optimized portfolio would have performed historically by comparing it with a benchmark portfolio.
+
+---
+
+## Completed Analyses
+
+- Portfolio backtesting using historical market data
+- Monthly portfolio rebalancing
+- Benchmark comparison (60% SPY / 40% BND)
+- Cumulative return analysis
+- Portfolio growth simulation
+- Rolling Sharpe Ratio
+- Maximum Drawdown analysis
+- Monthly return comparison
+- Active return analysis
+- Tracking Error
+- Information Ratio
+- Win Rate analysis
+- Performance summary table
+- Strategy performance visualization
+- Investment recommendation based on backtest results
+
+---
+
+## Performance Metrics
+
+The following metrics were evaluated:
+
+- Total Return
+- Annualized Return
+- Annualized Volatility
+- Sharpe Ratio
+- Maximum Drawdown
+- Tracking Error
+- Information Ratio
+
+---
+
+## Key Findings
+
+- The optimized portfolio outperformed the benchmark in cumulative returns.
+- Portfolio optimization improved risk-adjusted performance.
+- Diversification reduced downside risk.
+- Backtesting demonstrated the robustness of the proposed investment strategy.
+- The optimized portfolio consistently achieved a superior balance between return and volatility.
+
+---
+
+# Project Workflow
+
+```text
+Historical Market Data
+          │
+          ▼
+ Data Cleaning & EDA
+          │
+          ▼
+ Risk Analysis
+          │
+          ▼
+ Time Series Forecasting
+ (ARIMA & LSTM)
+          │
+          ▼
+ Best Model Selection
+          │
+          ▼
+ 12-Month Forecast
+          │
+          ▼
+ Portfolio Optimization
+ (Modern Portfolio Theory)
+          │
+          ▼
+ Efficient Frontier
+          │
+          ▼
+ Portfolio Backtesting
+          │
+          ▼
+ Final Investment Recommendation
+```
+
+---
+
 # Requirements
 
-Install the required packages using:
+Install all required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -336,7 +501,7 @@ pip install -r requirements.txt
 
 ---
 
-# Running the Notebook
+# Running the Project
 
 Launch Jupyter Notebook:
 
@@ -344,37 +509,15 @@ Launch Jupyter Notebook:
 jupyter notebook
 ```
 
-Open:
+Run the notebooks sequentially:
 
-```
-notebooks/task1_eda.ipynb
-```
+1. `task1_eda.ipynb`
+2. `task2_forecasting.ipynb`
+3. `task3_future_forecasting.ipynb`
+4. `task4_portfolio_optimization.ipynb`
+5. `task5_backtesting.ipynb`
 
-Run all cells sequentially.
-
----
-
-# Running the Forecasting Notebook
-
-Launch Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-Open:
-
-```
-notebooks/task2_forecasting.ipynb
-```
-
-Run all notebook cells sequentially to:
-
-- Prepare training and testing datasets
-- Build the ARIMA model
-- Train the LSTM model
-- Generate forecasts
-- Compare forecasting performance using MAE, RMSE, and MAPE
+Each notebook builds on the outputs of the previous task.
 
 ---
 
@@ -382,39 +525,40 @@ Run all notebook cells sequentially to:
 
 ## ✅ Completed
 
-- Project structure
-- Historical data extraction
+- Project setup
+- Historical market data extraction
 - Data preprocessing
-- Exploratory Data Analysis (EDA)
-- Data visualization
+- Exploratory Data Analysis
+- Financial risk analysis
 - Stationarity testing
-- Risk metrics (VaR and Sharpe Ratio)
-- Chronological train-test split
-- ARIMA forecasting model
-- LSTM forecasting model
-- Model evaluation
-- Forecast comparison
+- ARIMA forecasting
+- LSTM forecasting
+- Forecast model comparison
+- 12-month market forecasting
+- Forecast uncertainty analysis
+- Portfolio optimization
+- Efficient Frontier analysis
+- Monte Carlo portfolio simulation
+- Portfolio allocation recommendation
+- Portfolio backtesting
+- Benchmark comparison
+- Performance evaluation
+- Investment recommendation
 - Documentation
-
-## 🚧 Upcoming Tasks
-
-- Task 3: Future Market Forecasting
-- Task 4: Portfolio Optimization using Modern Portfolio Theory (MPT)
-- Task 5: Portfolio Backtesting
 
 ---
 
 # References
 
 - Yahoo Finance (YFinance API)
+- PyPortfolioOpt Documentation
+- TensorFlow Documentation
+- Statsmodels Documentation
+- Scikit-learn Documentation
 - Pandas Documentation
 - NumPy Documentation
 - Matplotlib Documentation
 - Seaborn Documentation
-- Statsmodels Documentation
-- pmdarima Documentation
-- TensorFlow Documentation
-- Scikit-learn Documentation
 
 ---
 
@@ -422,8 +566,8 @@ Run all notebook cells sequentially to:
 
 **Lalise Fufi**
 
-10 Academy Artificial Intelligence Mastery Program
+10 Academy – Artificial Intelligence Mastery Program
 
-Week 9 Challenge
+**Week 9 Challenge – Portfolio Optimization Using Time Series Forecasting**
 
 2026
