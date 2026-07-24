@@ -10,3 +10,4 @@ jupyter
 notebook
 tensorflow
 pmdarima
+PyPortfolioOpt
